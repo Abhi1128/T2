@@ -72,7 +72,6 @@ def generate_trials():
     random.shuffle(block2)
     return {"block1": block1, "block2": block2}
 
-# Load HTML content directly from a file
 @app.route("/")
 def index():
     try:
@@ -92,5 +91,7 @@ def submit_results():
     df.to_csv(RESULTS_FILE, index=False)
     return jsonify({"message": "Results saved successfully!"})
 
+# ✅ ✅ ✅ Make this change below:
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
