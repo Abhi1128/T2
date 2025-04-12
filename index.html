@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiment</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #intro-screen, #instruction-screen, #math-task, #recall-screen, #break-screen {
+      margin: 20px;
+    }
+
+    #word-display {
+      font-size: 4rem;
+      font-weight: bold;
+      margin: 20px;
+    }
+
+    #induction-note {
+      display: none;
+      font-size: 1.2rem;
+      color: red;
+      margin-top: 10px;
+    }
+
+    #instruction-screen {
+      display: none;
+      font-size: 1.5rem;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    #math-feedback {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 10px;
+      height: 1.2em;
+    }
+
+    #break-screen {
+      display: none;
+      font-size: 2rem;
+      color: green;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subject name input -->
+  <div id="intro-screen">
+    <label for="subject-name">Enter Subject Name:</label>
+    <input type="text" id="subject-name" placeholder="Your name"/>
+    <button id="start-btn" type="button" disabled>Start Experiment</button>
+  </div>
+
+  <!-- Instruction screen -->
+  <div id="instruction-screen">
+    <h2>Welcome to the experiment!</h2>
+    <p>This is a memory recall task. You will see some words on the screen.</p>
+    <p>You need to remember those words. When the recall screen appears,</p>
+    <p>please write down the words on the paper provided.</p>
+    <p>Press <strong>Spacebar</strong> to begin.</p>
+  </div>
+
+  <!-- Stimulus display -->
+  <div id="word-display" style="display: none;"></div>
+  <div id="induction-note">Do not remember this word</div>
+
+  <!-- Math task -->
+  <div id="math-task" style="display: none;">
+    <p>Solve: <span id="math-question"></span></p>
+    <input type="number" id="math-input"/>
+    <button id="submit-math" type="button">Submit</button>
+    <div id="math-feedback"></div>
+  </div>
+
+  <!-- Recall screen -->
+  <div id="recall-screen" style="display: none;">
+    <p>Please recall and write down the words you saw.</p>
+    <p>Time remaining: <span id="recall-timer">20</span> s</p>
+  </div>
+
+  <!-- Break screen -->
+  <div id="break-screen">
+    <p>You have completed 20 trials. Take a break!</p>
+    <p>Press <strong>Spacebar</strong> when you are ready to continue.</p>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
